@@ -1,0 +1,17 @@
+.tag {
+    align-items: center;
+    display: inline-flex;
+    font-size: 11px;
+    height: 2em;
+    justify-content: center;
+    line-height: 1.5;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    white-space: nowrap;
+    color: var(--blue-whale);
+    border-radius: var(--global-spacer);
+    border: 2px solid var(--blue-whale);
+    background-color: var(--white);
+    @include font-weight("bold");
+}
+  

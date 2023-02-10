@@ -1,0 +1,7 @@
+a {
+  text-decoration: none;
+  color: var(--font-color);
+  @include hocus() {
+    color: var(--font-color);
+  }
+}

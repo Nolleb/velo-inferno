@@ -1,0 +1,15 @@
+.divider {
+  margin-right: calc($global-spacer /2);
+  margin-left: calc($global-spacer /2);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: $grey-dark;
+  }
+}

@@ -1,0 +1,63 @@
+.loader-container{
+  position: absolute;
+  top: calc(50% + 130px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  :host-context(.header) & {
+    position: initial;
+    transform: none;
+  }
+}
+
+.bike {
+  width: 200px;
+  height: 90px;
+  :host-context(.header) & {
+    width: initial;
+    height: 107px;
+    padding-right: 10px;
+  }
+}
+
+.bar {
+  float: left;
+  position: absolute;
+  width: 170px;
+  height: 50px;
+}
+
+.lds-dual-ring {
+  position: relative;
+  float: left;
+  top: 60px;
+  width: 34px;
+  height: 34px;
+}
+.lds-dual-ring.right {
+  margin-left: 65px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  position: relative;
+  float: left;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 4px solid #e7e7f3;
+  border-color: #e7e7f3 #fc5200 #e7e7f3 black;
+  animation: lds-dual-ring 1s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+

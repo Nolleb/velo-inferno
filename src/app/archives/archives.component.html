@@ -1,0 +1,39 @@
+<h2>Archives {{year}}</h2>
+
+<app-loader *ngIf="isLoading"class="margin-left-auto header"></app-loader>
+<ng-container *ngIf="!isLoading">
+  <div class="o-layout">
+    <div class="o-layout__item u-1/2@tablet">
+      <div class="card u-margin-bottom">
+        <div class="card__title u-margin-bottom-small">
+          Nombre de kilomètres
+        </div>
+        <h4>{{totalDistance | km}} kms</h4>
+      </div>
+    </div>
+    <div class="o-layout__item u-1/2@tablet">
+      <div class="card u-margin-bottom">
+        <div class="card__title u-margin-bottom-small">
+          Nombre de sorties
+        </div>
+        <h4>{{stats.length}}</h4>
+      </div>
+    </div>
+    <div class="o-layout__item u-1/2@tablet">
+      <div class="card u-margin-bottom">
+        <div class="card__title u-margin-bottom-small">
+          Dénivelé
+        </div>
+        <h4>{{totalElevation}} m</h4>
+      </div>
+    </div>
+    <div class="o-layout__item u-1/2@tablet">
+      <div class="card u-margin-bottom">
+        <div class="card__title u-margin-bottom-small">
+          Temps
+        </div>
+        <h4>{{totalTime | hour}}</h4>
+      </div>
+    </div>
+  </div>
+</ng-container>

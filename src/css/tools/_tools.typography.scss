@@ -1,0 +1,17 @@
+///*----------------------------------*\
+//  #TYPOGRAPHY
+//\*----------------------------------*/
+
+@mixin font-weight($weight) {
+  @if ($weight == thin) {
+    font-weight: 100;
+  } @else if ($weight == normal) {
+    font-weight: 400;
+  } @else if ($weight == bold) {
+    font-weight: 700;
+  } @else if ($weight == black) {
+    font-weight: 900;
+  } @else {
+    @warn "#{$weight} is not a valid font-weight.";
+  }
+}

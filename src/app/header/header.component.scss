@@ -1,0 +1,31 @@
+.logo {
+  width: 75px;
+}
+header {
+  background-color: var(--white-color);
+  padding: 20px;
+  font-size: 16px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.stats {
+  background-color: var(--background-secondary);
+  color: var(--white-color);
+  border-radius: var(--border-radius-small);
+  font-size: 12px;
+  width: 250px;
+
+  &__highlight {
+    background-color: var(--white-color);
+    color: var(--font-color);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 4px;
+  }
+}
+
+.title {
+  margin: 0;
+  text-transform: uppercase;
+}

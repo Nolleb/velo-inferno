@@ -1,0 +1,162 @@
+<ng-container *ngIf="isLoading">
+  <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="activity && !isLoading">
+  <div class="o-layout activity-page">
+    <div class="o-layout__item u-1/2@tablet u-1/3@desktop">
+      <div class="card mb-spacer">
+        <div class="card__category mb-spacer-half">{{activity.sport_type}} - {{activity.gear ? activity.gear.name : 'Triban' }}<span class="divider"></span> <span class="text-grey">{{activity.start_date | datetime}}</span></div>
+        <div class="card__title d-flex align-items-center gap-spacing--sm">
+          <div class="icon-title">
+            <span class="material-icons">directions_bike</span>
+          </div>
+          {{activity.name}}
+        </div>
+        <div class="card__summary d-flex justify-content-space-between gap-spacing">
+          <div class="d-flex flex-column">
+              <span class="card__label">Distance</span>
+              <span class="card__subtitle">{{activity.distance | km}} km</span>
+          </div>
+          <div class="d-flex flex-column">
+            <span class="card__label">Durée</span>
+            <span class="card__subtitle">{{activity.moving_time | hour}}</span>
+          </div>
+          <div class="d-flex flex-column">
+            <span class="card__label">Dénivelé</span>
+            <span class="card__subtitle">{{activity.total_elevation_gain}} m</span>
+          </div>
+        </div>
+        <div class="card__stats">
+          <table data-stats>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Moy.</th>
+                <th>Max.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  Vitesse
+                </th>
+                <td>
+                  {{activity.average_speed | speed}} km/h
+                </td>
+                <td>
+                  {{activity.max_speed | speed}} km/h
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Puissance
+                </th>
+                <td>
+                  {{activity.average_watts}} w
+                </td>
+                <td>
+                  -
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Dépense d'énergie
+                </th>
+                <td>
+                  {{activity.kilojoules}} kj
+                </td>
+                <td>
+                  -
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Calories
+                </th>
+                <td>
+                  {{activity.calories}}
+                </td>
+                <td>
+                  -
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <ng-container *ngIf="starredSegments.length > 0">
+    <div class="o-layout__item u-1/2@tablet u-2/3@desktop">
+      <div class="card mb-spacer">
+        <h2 class="card__title d-flex align-items-center gap-spacing--sm">
+          <div class="icon-title">
+            <span class="material-icons">route</span>
+          </div>
+          Segments favoris
+        </h2>
+        <table data-starred-segments class="w-100">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Temps</th>
+              <th>Vitesse</th>
+              <th>Puissance</th>
+              <th>Efforts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let segment of starredSegments; let i = index">
+              <th class="is-flex-centered" (mouseover)="onMouseover($event, i)" (mouseout)="onMouseout($event)">
+                {{segment.name}}
+              </th>
+              <td>
+                <div class="has-border d-flex align-items-center justify-content-center padding-spacer--tiny">
+                  <span *ngIf="segment.time <= segment.pr_elapsed_time" class="material-icons text-gold">
+                    workspace_premium
+                  </span>
+                  <span>
+                    {{segment.time | hour}}
+                  </span>
+                </div>
+                <div class="d-flex align-items-center justify-content-center padding-spacer--tiny">
+                  <span class="material-icons" [ngClass]="segment.time <= segment.pr_elapsed_time ? 'text-silver' : 'text-gold'">
+                    workspace_premium
+                  </span>
+                  <span>
+                    {{segment.pr_elapsed_time | hour}}
+                  </span>
+                </div>
+              </td>
+              <td class="is-flex-centered">
+                {{segment.speed}} km/h
+              </td>
+              <td class="is-flex-centered">
+                {{segment.watts}} w
+              </td>
+              <td class="is-flex-centered">
+                {{segment.effort_count}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="starredSegments.length <= 0">
+    <div class="o-layout__item u-1/2@tablet">
+      <div class="card">
+        <h4>
+          Il n'existe pas de segment favori enregistré sur ce trajet
+        </h4>
+      </div>
+    </div>
+  </ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+  <div class="card">
+    <app-map [coords]="coords" [coordsSegment]="coordsSegment" [indexSegment]="indexSegment" [isHovered]="isHovered"></app-map>
+  </div>
+</ng-container>
+

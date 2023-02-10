@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  & > li {
+    display: inline;
+  }
+  a {
+      position: relative;
+      float: left;
+      padding: 6px 12px;
+      margin-left: -1px;
+      line-height: 1.42857143;
+      color: var(--font-color);
+      text-decoration: none;
+      background-color: var(--white-color);
+      border: 1px solid var(--background-secondary);
+
+      &.active {
+        z-index: 3;
+        color: var(--white-color);
+        cursor: default;
+        background-color: var(--background-secondary);
+        border-color: var(--background-secondary);
+      }
+  }
+}
+
+th {
+  cursor: pointer;
+  line-height: 24px;
+  margin: 0 auto;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.icon-sort {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}

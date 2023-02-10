@@ -1,0 +1,91 @@
+<ng-container *ngIf="isLoading">
+  <app-loader></app-loader>
+</ng-container>
+<table *ngIf="!isLoading" class="mb-spacer">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th (click)="sortBy('date')" class="position-relative">
+        <span>
+          Date
+        </span>
+        <span class="material-icons position-absolute icon-sort">
+          {{sortIcon('date')}}
+        </span>
+      </th>
+      <th (click)="sortBy('distance')" class="position-relative">
+        <span>
+          Distance
+        </span>
+        <span class="material-icons position-absolute icon-sort">
+          {{sortIcon('distance')}}
+        </span>
+      </th>
+      <th (click)="sortBy('time')" class="position-relative">
+        <span>
+          Temps
+        </span>
+        <span class="material-icons position-absolute icon-sort">
+          {{sortIcon('time')}}
+        </span>
+      </th>
+      <th (click)="sortBy('elevation')" class="position-relative">
+        <span>
+          Dénivelé
+        </span>
+        <span class="material-icons position-absolute icon-sort">
+          {{sortIcon('elevation')}}
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of activities">
+      <th>
+        <a color="primary" [routerLink]="['/activity', item.id]">
+          {{item.name}}
+        </a>
+      </th>
+      <td>
+        <div class="">{{item.date | datetime}}</div>
+      </td>
+      <td>
+        <div class="">{{item.distance | km}} kms</div>
+      </td>
+      <td>
+        <div class="">{{item.time | hour}}</div>
+      </td>
+      <td>
+        <div class="">
+          {{item.elevation}} m
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ng-container *ngIf="!isLoading && activities">
+      <!-- pager -->
+      <ul class="pagination">
+        <li>
+            <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">1</a>
+        </li>
+        <li>
+            <a [routerLink]="['/', 2]" routerLinkActive="active">2</a>
+        </li>
+        <li>
+            <a [routerLink]="['/', 3]" routerLinkActive="active">3</a>
+        </li>
+        <li>
+          <a [routerLink]="['/', 4]" routerLinkActive="active">4</a>
+        </li>
+        <li>
+          <a [routerLink]="['/', 5]" routerLinkActive="active">5</a>
+        </li>
+        <li>
+          <a [routerLink]="['/', 6]" routerLinkActive="active">6</a>
+        </li>
+        <li>
+          <a [routerLink]="['/', 7]" routerLinkActive="active">7</a>
+        </li>
+      </ul>
+</ng-container>

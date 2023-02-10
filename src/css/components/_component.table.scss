@@ -1,0 +1,56 @@
+table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+    width: 100%;
+    max-width: 720px;
+    margin: 2rem 0;
+    overflow: hidden;
+    font-size: 13px;
+    margin: 0 auto;
+
+    .activity-page & {
+      max-width: initial;
+      border-radius: initial;
+      box-shadow: none;
+    }
+}
+thead tr {
+  background-color: var(--main-color);
+  .activity-page & {
+    background-color: var(--secondary-color);
+  }
+}
+
+tr {
+  background-color: var(--white-color);
+}
+
+tr:nth-child(even) {
+  background-color: $grey-light;
+}
+
+
+td, th {
+  padding: .5rem;
+  text-align: center;
+}
+
+thead th {
+  color: var(--white-color);
+  .activity-page & {
+    color: currentColor;
+  }
+}
+
+tr {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+
+  table[data-stats] & {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  table[data-starred-segments] & {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
