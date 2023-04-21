@@ -1,19 +1,25 @@
 <footer>
-  <div class="d-flex justify-content-center align-items-center">
-      <strong>
+  <div class="d-flex justify-content-center flex-column align-items-center">
+      <strong class="mb-spacer">
           <p>&copy; Velo inferno {{dateOfTheYear}}</p>
       </strong>
-      <!-- <div class="archives">
-        Archives
-        <ul class="o-list-inline">
-          <li class="o-list-inline__item"><a (click)="onClick($event, '2022')"><strong>2022</strong></a></li>
-          <span class="divider"></span>
-          <li class="o-list-inline__item"><a (click)="onClick($event,'2021')"><strong>2021</strong></a></li>
-          <span class="divider"></span>
-          <li class="o-list-inline__item"><a (click)="onClick($event, '2020')"><strong>2020</strong></a></li>
-          <span class="divider"></span>
-          <li class="o-list-inline__item"><a (click)="onClick($event, '2019')"><strong>2019</strong></a></li>
-        </ul>
-      </div> -->
+
+      <div class="d-flex footer__container">
+        <div class="stats">
+          <a routerLink='/stats'><strong>Statistiques</strong></a>
+        </div>
+        <div class="archives">
+          Archives
+          <ul class="o-list-inline">
+            <li class="o-list-inline__item archives__item"><a (click)="onClick($event, '2022')"><strong>2022</strong></a></li>
+            <span class="divider"></span>
+            <li class="o-list-inline__item archives__item"><a (click)="onClick($event,'2021')"><strong>2021</strong></a></li>
+            <span class="divider"></span>
+            <li class="o-list-inline__item archives__item"><a (click)="onClick($event, '2020')"><strong>2020</strong></a></li>
+            <span class="divider"></span>
+            <li class="o-list-inline__item archives__item"><a (click)="onClick($event, '2019')"><strong>2019</strong></a></li>
+          </ul>
+        </div>
+      </div>
   </div>
 </footer>

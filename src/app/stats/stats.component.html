@@ -1,0 +1,8 @@
+<app-loader *ngIf="isLoading" class="margin-left-auto header"></app-loader>
+
+<main *ngIf="!isLoading">
+  <app-bar-chart [years]="years" [dataDistance]="totalDistance" [dataElevation]="totalElevation" [dataTime]="totalTime"></app-bar-chart>
+  <!--
+  <app-bar-chart [years]="years" [dataChart]="totalElevation" [id]="'chartElevation'"></app-bar-chart>
+  <app-bar-chart [years]="years" [dataChart]="totalTime" [id]="'chartTime'"></app-bar-chart> -->
+</main>

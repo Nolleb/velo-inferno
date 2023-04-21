@@ -1,0 +1,22 @@
+.main-container {
+  position: relative;
+}
+.svg-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  bottom: 80px;
+  z-index: -1;
+ // background: radial-gradient(at bottom, #BD76A8 30%, #46B0EA 100%);
+}
+
+.mountains {
+  position: absolute;
+ // z-index: 2;
+  right: 0;
+  bottom: -40px;
+  width: 100%;
+  opacity: .95;
+}
+

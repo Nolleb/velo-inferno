@@ -1,5 +1,5 @@
 .logo {
-  width: 75px;
+  width: 120px;
 }
 header {
   background-color: var(--white-color);
@@ -25,7 +25,19 @@ header {
   }
 }
 
-.title {
+.title, .subtitle, .title-container {
   margin: 0;
   text-transform: uppercase;
+}
+
+.title-container {
+  text-align: center;
+}
+
+.title {
+  color: var(--background-secondary);
+}
+
+.subtitle {
+  color: var(--main-color);
 }

@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { StravaService } from '../strava.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-activity',
@@ -17,7 +19,7 @@ export class ActivityComponent implements OnInit {
   starredSegments: any[] = []
   coords: any
   coordsSegment: any[][] = []
-  constructor(private stravaService: StravaService, public route: ActivatedRoute) {}
+  constructor(private stravaService: StravaService, public route: ActivatedRoute, private location: Location) {}
 
   ngOnInit(): void {
 
@@ -47,6 +49,11 @@ export class ActivityComponent implements OnInit {
   onMouseout(e: MouseEvent) {
     e.preventDefault()
     this.isHovered = false
+  }
+
+  goPreviousPage(e: MouseEvent) {
+    e.preventDefault()
+    this.location.back();
   }
 }
 

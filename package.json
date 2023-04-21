@@ -27,6 +27,7 @@
     "inuitcss": "^6.0.0",
     "leaflet": "^1.9.3",
     "moment": "^2.29.4",
+    "ngx-pagination": "^6.0.3",
     "node-fetch": "^2.6.8",
     "polyline-encoded": "0.0.9",
     "rxjs": "~7.5.0",

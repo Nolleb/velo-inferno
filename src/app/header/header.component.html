@@ -1,8 +1,11 @@
 <header class="d-flex align-items-center">
   <a routerLink="/">
     <div class="d-flex align-items-center gap-spacing--sm">
+      <div class="title-container d-flex flex-column">
+        <h1 class="title">{{title}}</h1>
+        <h5 class="subtitle">{{subtitle}}</h5>
+      </div>
       <img class="logo" src="{{url}}" alt="{{title}}">
-      <h1 class="title">{{title}}</h1>
     </div>
   </a>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StravaService } from '../strava.service';
 
 @Component({
@@ -9,35 +9,33 @@ import { StravaService } from '../strava.service';
 })
 
 export class RidesComponent implements OnInit {
-  activities?: any[] = []
+  activities: any[] = []
   isLoading: boolean = false
   pageParam: string = ''
   sortProperty: string = 'id'
   sortOrder = 1;
+  allRides: number | undefined = 0;
+  pagination: number = 1;
 
-  constructor(private stravaService: StravaService, public route: ActivatedRoute) { }
+  constructor(private stravaService: StravaService, public route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if(paramMap.has("page")) {
-        this.pageParam = paramMap.get("page") || ''
-        this.isLoading = true
-        this.stravaService.getActivitiesPage(this.pageParam).subscribe(response =>{
-          this.isLoading = false
-          this.activities = response.activities
-        })
-      } else {
-        this.getActivities()
-      }
-    })
+    this.getActivities()
   }
 
   getActivities() {
+
     this.isLoading = true
-    this.stravaService.getActivities().subscribe((res: {activities: any[] | undefined;}) => {
+    this.stravaService.getPaginatedActivities(this.pagination).subscribe((res: {activities: any}) => {
       this.isLoading = false
       this.activities = res.activities
+      this.allRides = res.activities?.length
     })
+  }
+
+  renderPage(event: number) {
+    this.pagination = event;
+    this.getActivities();
   }
 
   sortBy(property: string,) {

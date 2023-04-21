@@ -22,6 +22,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { KeysPipe } from './pipes/object-key';
 import { ArchivesComponent } from './archives/archives.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { StatsComponent } from './stats/stats.component';
 
 registerLocaleData(localeFr, 'fr')
 moment.locale('fr');
@@ -42,12 +44,14 @@ moment.locale('fr');
     MapComponent,
     ArchivesComponent,
     BarChartComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LeafletModule
+    LeafletModule,
+    NgxPaginationModule
   ],
 providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,15 @@
   <app-loader></app-loader>
 </ng-container>
 <ng-container *ngIf="activity && !isLoading">
+  <button (click)="goPreviousPage($event)" class="u-margin-bottom-small d-flex align-items-center gap-spacing--sm">
+    <span class="material-icons">
+      keyboard_backspace
+    </span>
+    <span>
+
+      Retour à la page précédente
+    </span>
+  </button>
   <div class="o-layout activity-page">
     <div class="o-layout__item u-1/2@tablet u-1/3@desktop">
       <div class="card mb-spacer">

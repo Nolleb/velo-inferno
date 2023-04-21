@@ -7,7 +7,8 @@ import { StravaService } from '../strava.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  title: string = 'Velo inferno';
+  title: string = 'Velo'
+  subtitle: string = 'inferno'
   url: string = 'assets/svg/velo-inferno.svg'
 
   constructor(private stravaService: StravaService) { }
@@ -20,15 +21,14 @@ export class HeaderComponent implements OnInit {
   totalTime: number = 0
 
   ngOnInit(): void {
-    this.getActivities()
     this.getFullYear()
   }
 
-  getActivities(){
+  getActivities() {
     this.isLoading = true
-    this.stravaService.getActivities().subscribe((res: {activities: any[] | undefined;}) => {
+    this.stravaService.getActivities().subscribe((res: {activities: any | undefined}) => {
       this.isLoading = false
-      this.activities = res.activities?.filter(it => parseInt(it.date) === new Date().getFullYear())
+      this.activities = res.activities?.filter((it: { date: string; }) => parseInt(it.date) === new Date().getFullYear())
 
       this.totalDistance = Object.values(this.activities!).reduce((t, {distance}) => t + distance, 0)
       this.totalElevation = (Object.values(this.activities!).reduce((t, {elevation}) => t + elevation, 0)).toFixed(2)

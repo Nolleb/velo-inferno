@@ -8,49 +8,40 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 router.get('', async function (req, res) {
   let token = await utils.fetchToken();
-  let link = `?access_token=${token.access_token}`
 
   const activities_link = 'https://www.strava.com/api/v3/athlete/activities';
 
+  const all_activities= []
+
   try {
+    let pageNum = 1
 
-    let activities = await fetch(activities_link + link);
-    activities = await activities.json();
-    let infos = filterActivities(activities);
+    while(true) {
+      let link = `?page=${pageNum}&per_page=${200}&access_token=${token.access_token}`
+      let activities = await fetch(activities_link + link);
+      activities = await activities.json();
+      let infos = filterActivities(activities);
 
-    res.status(200).json(
-      {
-        activities: infos.filter(it => it.type === 'Ride'),
+      console.log('activities', infos.length);
+      if(infos.length == 0) {
+        break
       }
-    );
-	} catch (err) {
-		console.log(err);
-		res.status(500).json({msg: `Internal Server Error.`});
-	}
-});
 
-router.get('/:page', async function (req, res) {
-  const page = req.params.page;
-  let link = ""
-  let token = await utils.fetchToken();
-  if(page === undefined || page === '') {
-    link= `?access_token=${token.access_token}`
-  } else {
-    link = `?page=${page}&per_page=${60}&access_token=${token.access_token}`
-  }
+      if(all_activities){
+        all_activities.push(infos)
+      } else {
+        all_activities = infos
+      }
 
-  const activities_link = 'https://www.strava.com/api/v3/athlete/activities';
+        pageNum += 1
+    }
 
-  try {
-
-    let activities = await fetch(activities_link + link);
-    activities = await activities.json();
-    let infos = filterActivities(activities);
+    const rides = all_activities.flat(1).filter(it => it.type === 'Ride')
 
     res.status(200).json(
       {
-        token: token.access_token,
-        activities: infos.filter(it => it.type === 'Ride'),
+        activities: rides
+
       }
     );
 	} catch (err) {

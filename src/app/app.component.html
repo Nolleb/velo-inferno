@@ -1,7 +1,29 @@
-<app-header></app-header>
-<div class="container o-wrapper">
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+<div class="main-container">
+  <app-header></app-header>
+  <div class="svg-container">
+    <svg class="mountains" width="100%" viewBox="0 0 600 400">
+      <defs>
+       <style type="text/css">
+         .mount3 {fill:#dcdcdc}
+         .mount2 {fill:#dcdcdc}
+         .mount4 {fill:#c8c8c8}
+         .mount1 {fill:#f4f4f4}
+         .snow {fill:white}
+       </style>
+      </defs>
+      <path class="mount1" d="M0 275 150 250 550 100 800 250 1200 150 1500 25 2000 300 2000 400 0 400"/>
+      <path class="snow" d="M 495 120 550 100 600 130 575 125 550 130 535 115"/>
+      <path class="snow" d="M 1380 75 1500 25 1635 100 1550 75 1500 85 1450 75"/>
+      <path class="mount3" d="M0 350 350 225 500 300 800 200 1000 275 1250 200 1500 250 1850 175 2000 250 2000 400 0 400"/>
+      <path class="mount2" d="M0 400 650 250 900 300 1550 250 2000 300 2000 400"/>
+      <path class="mount4" d="M0 350 450 300 800 350 1200 300 1500 350 1750 275 2000 200 2000 400 0 400"/>
+   </svg>
+  </div>
+  <div class="container o-wrapper">
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
+

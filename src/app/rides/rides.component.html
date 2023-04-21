@@ -1,6 +1,7 @@
 <ng-container *ngIf="isLoading">
   <app-loader></app-loader>
 </ng-container>
+
 <table *ngIf="!isLoading" class="mb-spacer">
   <thead>
     <tr>
@@ -40,7 +41,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of activities">
+    <tr *ngFor="let item of activities | paginate
+    : {
+        itemsPerPage: 30,
+        currentPage: pagination,
+        totalItems: allRides
+      }">
       <th>
         <a color="primary" [routerLink]="['/activity', item.id]">
           {{item.name}}
@@ -64,28 +70,9 @@
   </tbody>
 </table>
 <ng-container *ngIf="!isLoading && activities">
-      <!-- pager -->
-      <ul class="pagination">
-        <li>
-            <a routerLink='/' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">1</a>
-        </li>
-        <li>
-            <a [routerLink]="['/', 2]" routerLinkActive="active">2</a>
-        </li>
-        <li>
-            <a [routerLink]="['/', 3]" routerLinkActive="active">3</a>
-        </li>
-        <li>
-          <a [routerLink]="['/', 4]" routerLinkActive="active">4</a>
-        </li>
-        <li>
-          <a [routerLink]="['/', 5]" routerLinkActive="active">5</a>
-        </li>
-        <li>
-          <a [routerLink]="['/', 6]" routerLinkActive="active">6</a>
-        </li>
-        <li>
-          <a [routerLink]="['/', 7]" routerLinkActive="active">7</a>
-        </li>
-      </ul>
+      <div class="d-flex justify-content-center pagination">
+        <pagination-controls
+          (pageChange)="renderPage($event)"
+        ></pagination-controls>
+      </div>
 </ng-container>
