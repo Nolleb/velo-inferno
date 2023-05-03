@@ -4,4 +4,10 @@ button {
   background-color: initial;
   color: currentColor;
   cursor: pointer;
+
+  background-color: var(--background-secondary);
+  color: var(--white-color);
+  border-radius: var(--border-radius-small);
+  font-size: 12px;
+  padding: 10px;
 }

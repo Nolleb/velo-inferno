@@ -1,4 +1,4 @@
-<header class="d-flex align-items-center">
+<header class="d-flex align-items-center justify-content-space-between">
   <a routerLink="/">
     <div class="d-flex align-items-center gap-spacing--sm">
       <div class="title-container d-flex flex-column">
@@ -8,38 +8,7 @@
       <img class="logo" src="{{url}}" alt="{{title}}">
     </div>
   </a>
-
-  <app-loader *ngIf="isLoading"class="margin-left-auto header"></app-loader>
-  <ng-container *ngIf="!isLoading">
-    <div class="stats d-flex align-items-center flex-column margin-left-auto padding-spacer--sm">
-      <div class="gap-spacing--tiny d-flex align-items-center mb-spacer-half">
-        <span class="material-icons">
-          query_stats
-        </span>
-        <span class="stats__highlight">
-          stats {{dateOfTheYear}}
-        </span>
-      </div>
-      <div class="d-flex mb-spacer-tiny align-items-center gap-spacing--sm">
-        <div class="d-flex align-items-center gap-spacing--tiny">
-          <span class="material-icons">landscape</span>
-          <span class="stats__highlight">{{totalElevation}} m</span>
-        </div>
-        <div class="d-flex align-items-center gap-spacing--tiny">
-          <span class="material-icons">directions_bike</span>
-          <span class="stats__highlight">{{totalDistance | km}} kms</span>
-        </div>
-      </div>
-      <div class="d-flex align-items-center gap-spacing--sm">
-        <div class="d-flex align-items-center gap-spacing--tiny">
-          <span class="material-icons">av_timer</span>
-          <span class="stats__highlight">{{totalTime | hour}}</span>
-        </div>
-        <div class="d-flex align-items-center gap-spacing--tiny">
-          <span class="material-icons">sports_score</span>
-          <span class="stats__highlight">{{activities?.length}}</span>
-        </div>
-      </div>
-    </div>
-  </ng-container>
+  <button>
+    <a routerLink='/stats'>Statistiques globales</a>
+  </button>
 </header>

@@ -6,15 +6,6 @@ footer {
   border-top-right-radius: 20px;
 }
 
-.footer {
-  &__container {
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-}
-
 p {
   margin: 0;
 }
@@ -22,6 +13,10 @@ p {
 .archives {
   &__item {
     cursor: pointer;
+  }
+
+  &__list {
+    margin: 0;
   }
 }
 

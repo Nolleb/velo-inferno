@@ -38,10 +38,40 @@ router.get('', async function (req, res) {
 
     const rides = all_activities.flat(1).filter(it => it.type === 'Ride')
 
+
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = (page * limit);
+
+    const results = {};
+
+    if(endIndex < rides.length) {
+        results.next = {
+            page: page + 1,
+            limit: limit
+        };
+    }
+
+    if(startIndex > 0) {
+        results.previous = {
+            page: page - 1,
+            limit: limit
+        }
+    }
+
+    console.log("page et limit: " + page + " " +limit)
+
+    if(isNaN(parseFloat(limit)) && isNaN(parseFloat(page))) {
+      results.activities = rides
+    } else {
+      results.activities = rides.slice(startIndex, endIndex)
+    }
+
     res.status(200).json(
       {
-        activities: rides
-
+        activities: results,
       }
     );
 	} catch (err) {

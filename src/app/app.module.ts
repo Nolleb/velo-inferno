@@ -24,6 +24,9 @@ import { ArchivesComponent } from './archives/archives.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StatsComponent } from './stats/stats.component';
+import { BarChartDistanceComponent } from './bar-chart-distance/bar-chart-distance.component';
+import { BarChartTimeComponent } from './bar-chart-time/bar-chart-time.component';
+import { BarChartRidesComponent } from './bar-chart-rides/bar-chart-rides.component';
 
 registerLocaleData(localeFr, 'fr')
 moment.locale('fr');
@@ -44,7 +47,10 @@ moment.locale('fr');
     MapComponent,
     ArchivesComponent,
     BarChartComponent,
-    StatsComponent
+    StatsComponent,
+    BarChartDistanceComponent,
+    BarChartTimeComponent,
+    BarChartRidesComponent
   ],
   imports: [
     BrowserModule,

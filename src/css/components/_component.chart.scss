@@ -1,0 +1,13 @@
+.chart {
+  margin-bottom: 20px;
+
+  &__canvas {
+    min-height: 200px;
+    @include mq($from: tablet) {
+      min-height: 300px;
+    }
+    @include mq($from: desktop) {
+      min-height: 400px;
+    }
+  }
+}

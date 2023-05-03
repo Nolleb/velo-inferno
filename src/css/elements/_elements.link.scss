@@ -4,4 +4,13 @@ a {
   @include hocus() {
     color: var(--font-color);
   }
+
+  button & {
+    color: currentColor;
+    font-size: 14px;
+    letter-spacing: 1px;
+    @include hocus() {
+      color: currentColor;
+    }
+  }
 }

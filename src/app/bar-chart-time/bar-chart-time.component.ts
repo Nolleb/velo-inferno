@@ -3,30 +3,31 @@ import { Chart } from 'chart.js/auto';
 import { adjustColor } from '../utils/adjust-color';
 
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  selector: 'app-bar-chart-time',
+  templateUrl: './bar-chart-time.component.html',
+  styleUrls: ['./bar-chart-time.component.scss']
 })
-export class BarChartComponent implements OnInit {
+export class BarChartTimeComponent implements OnInit {
   @Input() years?: any[]
 
   @Input() label!: string
   @Input() color!: string
   @Input() data!: any
 
-  chart: any;
-
+  chart: any
   constructor() { }
 
   ngOnInit(): void {
     this.createChart()
+
   }
 
   createChart() {
+    console.log("bon ", this.data);
 
-    console.log("bar chart elevation ", this.data);
     //this.chart.defaults.color = "#1c0c4f"
-    this.chart = new Chart("chartID", {
+
+    this.chart = new Chart("chartTimeID", {
       type: 'bar', //this denotes tha type of chart
       data: {// values on X-Axis
         labels: this.years,
@@ -64,7 +65,6 @@ export class BarChartComponent implements OnInit {
         }
 
     });
-
   }
 
 }

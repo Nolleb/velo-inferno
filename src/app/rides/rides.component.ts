@@ -9,13 +9,17 @@ import { StravaService } from '../strava.service';
 })
 
 export class RidesComponent implements OnInit {
+
   activities: any[] = []
   isLoading: boolean = false
   pageParam: string = ''
   sortProperty: string = 'id'
-  sortOrder = 1;
-  allRides: number | undefined = 0;
-  pagination: number = 1;
+  sortOrder = 1
+  allRides: number | undefined = 0
+  pagination: number = 1
+  limit: number = 20
+  next: object | undefined
+  prev: object | undefined
 
   constructor(private stravaService: StravaService, public route: ActivatedRoute, private router: Router) { }
 
@@ -26,16 +30,27 @@ export class RidesComponent implements OnInit {
   getActivities() {
 
     this.isLoading = true
-    this.stravaService.getPaginatedActivities(this.pagination).subscribe((res: {activities: any}) => {
+    this.stravaService.getPaginatedActivities(this.pagination, this.limit).subscribe((res: {activities: any}) => {
       this.isLoading = false
-      this.activities = res.activities
-      this.allRides = res.activities?.length
+
+      console.log("res", res.activities);
+
+      this.next = res.activities?.next
+      this.prev = res.activities?.previous
+
+      this.activities = res.activities.activities
+      this.allRides = res.activities?.activities.length
     })
   }
 
-  renderPage(event: number) {
-    this.pagination = event;
-    this.getActivities();
+  prevPagination() {
+    this.pagination = this.pagination - 1
+    this.getActivities()
+  }
+
+  nextPagination() {
+    this.pagination = this.pagination + 1
+    this.getActivities()
   }
 
   sortBy(property: string,) {

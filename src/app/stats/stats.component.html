@@ -1,8 +1,21 @@
 <app-loader *ngIf="isLoading" class="margin-left-auto header"></app-loader>
 
 <main *ngIf="!isLoading">
-  <app-bar-chart [years]="years" [dataDistance]="totalDistance" [dataElevation]="totalElevation" [dataTime]="totalTime"></app-bar-chart>
-  <!--
-  <app-bar-chart [years]="years" [dataChart]="totalElevation" [id]="'chartElevation'"></app-bar-chart>
-  <app-bar-chart [years]="years" [dataChart]="totalTime" [id]="'chartTime'"></app-bar-chart> -->
+  <ul class="o-layout">
+    <li class="o-layout__item u-1/2@tablet">
+      <app-bar-chart [years]="years" [data]="totalElevation" [label]="'Dénivelé en Kms'" [color]="'#f4704dff'"></app-bar-chart>
+    </li>
+    <li class="o-layout__item u-1/2@tablet">
+      <app-bar-chart-distance [years]="years" [data]="totalDistance" [label]="'Distance en Kms'" [color]="'#fccc5a'">
+      </app-bar-chart-distance>
+    </li>
+    <li class="o-layout__item u-1/2@tablet">
+      <app-bar-chart-time [years]="years" [data]="totalTime" [label]="'Temps passé'" [color]="'#f4704dff'">
+      </app-bar-chart-time>
+    </li>
+    <li class="o-layout__item u-1/2@tablet">
+      <app-bar-chart-rides [years]="years" [data]="totalRides" [label]="'Nombre de sorties'" [color]="'#fccc5a'">
+      </app-bar-chart-rides>
+    </li>
+  </ul>
 </main>

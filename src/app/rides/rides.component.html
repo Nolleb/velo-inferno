@@ -41,12 +41,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of activities | paginate
-    : {
-        itemsPerPage: 30,
-        currentPage: pagination,
-        totalItems: allRides
-      }">
+    <tr *ngFor="let item of activities">
       <th>
         <a color="primary" [routerLink]="['/activity', item.id]">
           {{item.name}}
@@ -71,8 +66,8 @@
 </table>
 <ng-container *ngIf="!isLoading && activities">
       <div class="d-flex justify-content-center pagination">
-        <pagination-controls
-          (pageChange)="renderPage($event)"
-        ></pagination-controls>
+        <button [disabled]="prev == undefined" [class.disabled]="prev == undefined" (click)="prevPagination()">prev</button>
+        <div class="pagination__page">{{pagination}}</div>
+        <button [disabled]="next == undefined" [class.disabled]="next == undefined" (click)="nextPagination()">next</button>
       </div>
 </ng-container>

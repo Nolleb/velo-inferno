@@ -12,8 +12,8 @@ export class StravaService {
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  getPaginatedActivities(page: number){
-    return this.http.get<{activities: any}>(this.baseUrl + '?page=' + page)
+  getPaginatedActivities(page: number, limit: number){
+    return this.http.get<{activities: any}>(this.baseUrl + '?page=' + page + '&limit=' + limit)
   }
 
   getActivities() {

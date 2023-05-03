@@ -111,6 +111,7 @@
 @import "./elements/elements.divider";
 @import "./elements/elements.icon-title";
 @import "./elements/elements.button";
+@import "./elements/elements.disabled";
 
 // OBJECTS
 //
@@ -133,6 +134,7 @@
 // Build and include your project’s UI components here.
 @import "./components/component.table";
 @import "./components/component.card";
+@import "./components/component.chart";
 
 // UTILITIES
 @import "node_modules/inuitcss/utilities/utilities.clearfix";
