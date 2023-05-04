@@ -27,6 +27,7 @@
     font-size: 24px;
     @include font-weight("bold");
     margin-bottom: calc($global-spacer / 2);
+    color: var(--main-color);
   }
 
   &__subtitle {

@@ -28,7 +28,7 @@ export class ArchivesComponent implements OnInit {
 
         this.stravaService.getActivities().subscribe(it =>{
           this.isLoading = false
-          this.globalStats.push(...it.activities.filter((stats: { date: string }) => parseInt(stats.date) === parseInt(this.year)))
+          this.globalStats.push(...it.activities.activities.filter((stats: { date: string }) => parseInt(stats.date) === parseInt(this.year)))
           this.totalDistance = Object.values(this.globalStats!).reduce((t, {distance}) => t + distance, 0)
           this.totalElevation = (Object.values(this.globalStats!).reduce((t, {elevation}) => t + elevation, 0)).toFixed(2)
           this.totalTime = Object.values(this.globalStats!).reduce((t, {time}) => t + time, 0)

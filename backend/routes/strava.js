@@ -3,6 +3,7 @@ const router = express.Router();
 const utils = require('../utils/re-authorize');
 const polyUtil = require('polyline-encoded');
 const filterActivities = require('../utils/filter-activities');
+const { getElevation } = require('../utils/googleMapClient');
 
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
@@ -22,7 +23,7 @@ router.get('', async function (req, res) {
       activities = await activities.json();
       let infos = filterActivities(activities);
 
-      console.log('activities', infos.length);
+      //console.log('activities', infos.length);
       if(infos.length == 0) {
         break
       }
@@ -61,7 +62,7 @@ router.get('', async function (req, res) {
         }
     }
 
-    console.log("page et limit: " + page + " " +limit)
+    //console.log("page et limit: " + page + " " +limit)
 
     if(isNaN(parseFloat(limit)) && isNaN(parseFloat(page))) {
       results.activities = rides
@@ -91,6 +92,21 @@ router.get('/activity/:id', async function (req, res) {
     activity = await activity.json();
 
     let activeSegments = activity.segment_efforts.filter((it) => it.segment.starred === true);
+    let elevationSegments = activity.segment_efforts;
+
+    const elevationSegmentsinfos = [];
+    for(let x in elevationSegments) {
+      const newObj = {}
+
+     // newObj['id'] = elevationSegments[x]['segment']['id']
+     // newObj['distance'] = elevationSegments[x]['segment']['distance']
+      newObj['elevation_low'] = elevationSegments[x]['segment']['elevation_low']
+      newObj['elevation_high'] = elevationSegments[x]['segment']['elevation_high']
+      //elevationSegmentsinfos.push(newObj);
+      elevationSegmentsinfos.push(elevationSegments[x]['segment']['elevation_low']);
+      elevationSegmentsinfos.push(elevationSegments[x]['segment']['elevation_high']);
+    }
+
 
     const activeSegmentsInfos = []
     for(let x in activeSegments) {
@@ -105,8 +121,13 @@ router.get('/activity/:id', async function (req, res) {
         activeSegmentsInfos.push(newObj);
     }
 
+
     const polylineString = activity.map.summary_polyline;
     const coords = polyUtil.decode(polylineString);
+
+    /* getElevation(polylineString).then((elevation) =>{
+      console.log("elevation", elevation)
+    }) */
 
     const asyncRes = await Promise.all(activeSegmentsInfos.map(async (it) => {
       const segmentLink = `https://www.strava.com/api/v3/segments/${it.id}?access_token=`;
@@ -141,6 +162,7 @@ router.get('/activity/:id', async function (req, res) {
         activity: activity,
         coords: coords,
         activeSegments: asyncRes,
+        elevation: elevationSegmentsinfos
       }
     );
   }

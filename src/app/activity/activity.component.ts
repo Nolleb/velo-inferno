@@ -3,7 +3,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { StravaService } from '../strava.service';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-activity',
   templateUrl: './activity.component.html',
@@ -19,10 +18,16 @@ export class ActivityComponent implements OnInit {
   starredSegments: any[] = []
   coords: any
   coordsSegment: any[][] = []
+
+  coordsLatLng: L.LatLngTuple[] = []
+  coordsSegments:number[][] | undefined
+  elevation: [] = []
+
+
   constructor(private stravaService: StravaService, public route: ActivatedRoute, private location: Location) {}
 
   ngOnInit(): void {
-
+    this.coordsLatLng = this.coords as L.LatLngTuple[]
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has("id")) {
         this.activityId = paramMap.get("id") || ''
@@ -30,7 +35,13 @@ export class ActivityComponent implements OnInit {
         this.stravaService.getActivity(this.activityId).subscribe(response =>{
           this.isLoading = false
           this.activity = response.activity
+          //console.log("activity", response.coords)
+
+
           this.coords = response.coords
+          this.elevation = response.elevation
+          console.log("elevation", this.elevation)
+
           this.starredSegments = response.activeSegments
           response.activeSegments.forEach((segment: any) => {
             this.coordsSegment.push(segment.coords)

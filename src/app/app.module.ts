@@ -27,6 +27,7 @@ import { StatsComponent } from './stats/stats.component';
 import { BarChartDistanceComponent } from './bar-chart-distance/bar-chart-distance.component';
 import { BarChartTimeComponent } from './bar-chart-time/bar-chart-time.component';
 import { BarChartRidesComponent } from './bar-chart-rides/bar-chart-rides.component';
+import { LineChartElevationComponent } from './line-chart-elevation/line-chart-elevation.component';
 
 registerLocaleData(localeFr, 'fr')
 moment.locale('fr');
@@ -50,7 +51,8 @@ moment.locale('fr');
     StatsComponent,
     BarChartDistanceComponent,
     BarChartTimeComponent,
-    BarChartRidesComponent
+    BarChartRidesComponent,
+    LineChartElevationComponent
   ],
   imports: [
     BrowserModule,

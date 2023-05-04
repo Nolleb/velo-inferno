@@ -12,7 +12,7 @@
     </span>
   </button>
   <div class="o-layout activity-page">
-    <div class="o-layout__item u-1/2@tablet u-1/3@desktop">
+    <div class="o-layout__item u-1/2@tablet  u-2/5@desktop">
       <div class="card mb-spacer">
         <div class="card__category mb-spacer-half">{{activity.sport_type}} - {{activity.gear ? activity.gear.name : 'Triban' }}<span class="divider"></span> <span class="text-grey">{{activity.start_date | datetime}}</span></div>
         <div class="card__title d-flex align-items-center gap-spacing--sm">
@@ -94,8 +94,18 @@
         </div>
       </div>
     </div>
+    <div class="o-layout__item u-1/2@tablet  u-3/5@desktop">
+      <app-line-chart-elevation [data]="elevation" [label]="'Relief'" [color]="'#f4704dff'"></app-line-chart-elevation>
+    </div>
+  </div>
+  <div class="o-layout activity-page">
+    <div class="o-layout__item u-1/2@tablet u-2/5@desktop">
+      <div class="card mb-spacer">
+        <app-map [coords]="coords" [coordsSegment]="coordsSegment" [indexSegment]="indexSegment" [isHovered]="isHovered"></app-map>
+      </div>
+    </div>
   <ng-container *ngIf="starredSegments.length > 0">
-    <div class="o-layout__item u-1/2@tablet u-2/3@desktop">
+    <div class="o-layout__item u-1/2@tablet u-3/5@desktop">
       <div class="card mb-spacer">
         <h2 class="card__title d-flex align-items-center gap-spacing--sm">
           <div class="icon-title">
@@ -119,7 +129,7 @@
                 {{segment.name}}
               </th>
               <td>
-                <div class="has-border d-flex align-items-center justify-content-center padding-spacer--tiny">
+                <div class="d-flex align-items-center justify-content-center padding-spacer--tiny">
                   <span *ngIf="segment.time <= segment.pr_elapsed_time" class="material-icons text-gold">
                     workspace_premium
                   </span>
@@ -127,14 +137,14 @@
                     {{segment.time | hour}}
                   </span>
                 </div>
-                <div class="d-flex align-items-center justify-content-center padding-spacer--tiny">
+                <!-- <div class="d-flex align-items-center justify-content-center padding-spacer--tiny">
                   <span class="material-icons" [ngClass]="segment.time <= segment.pr_elapsed_time ? 'text-silver' : 'text-gold'">
                     workspace_premium
                   </span>
                   <span>
                     {{segment.pr_elapsed_time | hour}}
                   </span>
-                </div>
+                </div> -->
               </td>
               <td class="is-flex-centered">
                 {{segment.speed}} km/h
@@ -162,10 +172,3 @@
   </ng-container>
   </div>
 </ng-container>
-
-<ng-container *ngIf="!isLoading">
-  <div class="card">
-    <app-map [coords]="coords" [coordsSegment]="coordsSegment" [indexSegment]="indexSegment" [isHovered]="isHovered"></app-map>
-  </div>
-</ng-container>
-

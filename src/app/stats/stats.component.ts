@@ -26,7 +26,6 @@ export class StatsComponent implements OnInit {
 
       this.stravaService.getActivities().subscribe(it =>{
         this.isLoading = false
-        console.log("it => ", it.activities);
 
         this.years.map((year: string) => {
           let distance = 0
@@ -40,6 +39,9 @@ export class StatsComponent implements OnInit {
           this.totalElevation.push(Number((elevation / 1000).toFixed(2)))
           this.totalTime.push(this.secondsToHours(time))
           this.totalRides.push(this.globalStats.length)
+
+          console.log("distance" , this.totalDistance);
+
 
         })
 

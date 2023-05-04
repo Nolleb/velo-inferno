@@ -21,6 +21,6 @@ export class StravaService {
   }
 
   getActivity(id: string) {
-    return this.http.get<{ token: string, activity: any, coords: any, activeSegments: any }>(this.baseUrlActivity + id)
+    return this.http.get<{ token: string, activity: any, coords: any, activeSegments: any, elevation: any }>(this.baseUrlActivity + id)
   }
 }
