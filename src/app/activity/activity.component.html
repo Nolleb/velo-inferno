@@ -11,92 +11,96 @@
       Retour à la page précédente
     </span>
   </button>
-  <div class="o-layout activity-page">
-    <div class="o-layout__item u-1/2@tablet  u-2/5@desktop">
-      <div class="card mb-spacer">
-        <div class="card__category mb-spacer-half">{{activity.sport_type}} - {{activity.gear ? activity.gear.name : 'Triban' }}<span class="divider"></span> <span class="text-grey">{{activity.start_date | datetime}}</span></div>
-        <div class="card__title d-flex align-items-center gap-spacing--sm">
-          <div class="icon-title">
-            <span class="material-icons">directions_bike</span>
+  <div class="o-layout activity-page mb-spacer">
+      <div class="o-layout__item">
+        <div class="card">
+          <div class="mb-spacer-large margin-auto">
+            <div class="d-inline-block u-1/1 u-1/2@tablet">
+              <div class="card__category mb-spacer-half">{{activity.sport_type}} - {{activity.gear ? activity.gear.name : 'Triban' }}<span class="divider"></span> <span class="text-grey">{{activity.start_date | datetime}}</span></div>
+              <div class="card__title d-flex align-items-center gap-spacing--sm">
+                <div class="icon-title">
+                  <span class="material-icons">directions_bike</span>
+                </div>
+                {{activity.name}}
+              </div>
+              <div class="card__summary d-flex justify-content-space-between gap-spacing">
+                <div class="d-flex flex-column">
+                    <span class="card__label">Distance</span>
+                    <span class="card__subtitle">{{activity.distance | km}} km</span>
+                </div>
+                <div class="d-flex flex-column">
+                  <span class="card__label">Durée</span>
+                  <span class="card__subtitle">{{activity.moving_time | hour}}</span>
+                </div>
+                <div class="d-flex flex-column">
+                  <span class="card__label">Dénivelé</span>
+                  <span class="card__subtitle">{{activity.total_elevation_gain}} m</span>
+                </div>
+              </div>
+            </div>
+            <div class="d-inline-block u-1/1 u-1/2@tablet card__block-2">
+              <div class="card__stats">
+                <table data-stats>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Moy.</th>
+                      <th>Max.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>
+                        Vitesse
+                      </th>
+                      <td>
+                        {{activity.average_speed | speed}} km/h
+                      </td>
+                      <td>
+                        {{activity.max_speed | speed}} km/h
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        Puissance
+                      </th>
+                      <td>
+                        {{activity.average_watts}} w
+                      </td>
+                      <td>
+                        -
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        Dépense d'énergie
+                      </th>
+                      <td>
+                        {{activity.kilojoules}} kj
+                      </td>
+                      <td>
+                        -
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        Calories
+                      </th>
+                      <td>
+                        {{activity.calories}}
+                      </td>
+                      <td>
+                        -
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-          {{activity.name}}
-        </div>
-        <div class="card__summary d-flex justify-content-space-between gap-spacing">
-          <div class="d-flex flex-column">
-              <span class="card__label">Distance</span>
-              <span class="card__subtitle">{{activity.distance | km}} km</span>
-          </div>
-          <div class="d-flex flex-column">
-            <span class="card__label">Durée</span>
-            <span class="card__subtitle">{{activity.moving_time | hour}}</span>
-          </div>
-          <div class="d-flex flex-column">
-            <span class="card__label">Dénivelé</span>
-            <span class="card__subtitle">{{activity.total_elevation_gain}} m</span>
-          </div>
-        </div>
-        <div class="card__stats">
-          <table data-stats>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Moy.</th>
-                <th>Max.</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  Vitesse
-                </th>
-                <td>
-                  {{activity.average_speed | speed}} km/h
-                </td>
-                <td>
-                  {{activity.max_speed | speed}} km/h
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Puissance
-                </th>
-                <td>
-                  {{activity.average_watts}} w
-                </td>
-                <td>
-                  -
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Dépense d'énergie
-                </th>
-                <td>
-                  {{activity.kilojoules}} kj
-                </td>
-                <td>
-                  -
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Calories
-                </th>
-                <td>
-                  {{activity.calories}}
-                </td>
-                <td>
-                  -
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <app-line-chart-elevation [distanceLabels]="distanceLabels" [data]="elevation" [label]="'Relief par segment'" [color]="'#f4704dff'"></app-line-chart-elevation>
         </div>
       </div>
-    </div>
-    <div class="o-layout__item u-1/2@tablet  u-3/5@desktop">
-      <app-line-chart-elevation [data]="elevation" [label]="'Relief'" [color]="'#f4704dff'"></app-line-chart-elevation>
-    </div>
   </div>
   <div class="o-layout activity-page">
     <div class="o-layout__item u-1/2@tablet u-2/5@desktop">

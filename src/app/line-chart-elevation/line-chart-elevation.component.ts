@@ -10,6 +10,7 @@ import { adjustColor } from '../utils/adjust-color';
 export class LineChartElevationComponent implements OnInit {
 
   @Input() label!: string
+  @Input() distanceLabels!: string[]
   @Input() color!: string
   @Input() data!: any
 
@@ -19,7 +20,7 @@ export class LineChartElevationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.labels = this.createEmptyArrayLabels(this.data.length / 2)
+    this.labels = this.createEmptyArrayLabels(Math.round(this.data.length / 2))
     this.createChart()
   }
 
@@ -28,7 +29,7 @@ export class LineChartElevationComponent implements OnInit {
     this.chart = new Chart("lineElevationID", {
       type: 'line', //this denotes tha type of chart
       data: {// values on X-Axis
-        labels: this.labels,
+        labels: this.distanceLabels,
 	       datasets: [
           {
             label: this.label,
@@ -57,6 +58,7 @@ export class LineChartElevationComponent implements OnInit {
               }
             },
             x: {
+              beginAtZero: true,
               grid: {
                 display: false,
               }

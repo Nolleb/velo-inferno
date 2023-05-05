@@ -97,14 +97,24 @@ router.get('/activity/:id', async function (req, res) {
     const elevationSegmentsinfos = [];
     for(let x in elevationSegments) {
       const newObj = {}
+      const elevationData = []
 
      // newObj['id'] = elevationSegments[x]['segment']['id']
      // newObj['distance'] = elevationSegments[x]['segment']['distance']
-      newObj['elevation_low'] = elevationSegments[x]['segment']['elevation_low']
-      newObj['elevation_high'] = elevationSegments[x]['segment']['elevation_high']
+      elevationData.push(Math.abs(elevationSegments[x]['segment']['elevation_low']));
+      elevationData.push(Math.abs(elevationSegments[x]['segment']['elevation_high']));
+      //elevationData.push(elevationSegments[x]['segment']['elevation_high']);
+      //newObj['elevation_low'] = Math.abs(elevationSegments[x]['segment']['elevation_low']);
+      //newObj['elevation_high'] = Math.abs(elevationSegments[x]['segment']['elevation_high']);
+      newObj['name'] = elevationSegments[x]['segment']['name'];
+      newObj['elevationData'] = elevationData;
+      //newObj['elevation_low'] = elevationSegments[x]['segment']['elevation_low']
+      //newObj['elevation_high'] = elevationSegments[x]['segment']['elevation_high']
       //elevationSegmentsinfos.push(newObj);
-      elevationSegmentsinfos.push(elevationSegments[x]['segment']['elevation_low']);
-      elevationSegmentsinfos.push(elevationSegments[x]['segment']['elevation_high']);
+      //elevationSegmentsinfos.push(elevationSegments[x]['segment']['elevation_low']);
+      //elevationSegmentsinfos.push(elevationSegments[x]['segment']['elevation_high']);
+      elevationSegmentsinfos.push(newObj);
+      //elevationSegmentsinfos.push(elevationData);
     }
 
 

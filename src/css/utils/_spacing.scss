@@ -1,9 +1,9 @@
 .margin-auto {
-    margin: auto;
+  margin: auto;
 }
 
 .margin-left-auto {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .margin-left- {
@@ -11,15 +11,23 @@
 }
 
 .mb-spacer {
-    margin-bottom: $global-spacer;
+  margin-bottom: $global-spacer;
+}
+
+.mb-spacer-large {
+  margin-bottom: calc($global-spacer * 2);
 }
 
 .mb-spacer-half {
-    margin-bottom: calc($global-spacer / 2);
+  margin-bottom: calc($global-spacer / 2);
 }
 
 .mb-spacer-tiny {
   margin-bottom: calc($global-spacer / 4);
+}
+
+.padding-left-spacer {
+  padding-left: $global-spacer;
 }
 
 .padding-spacer {
@@ -39,11 +47,11 @@
 }
 
 .gap-spacing {
-    gap: $inuit-global-spacing-unit;
-    &--sm {
-        gap: calc($inuit-global-spacing-unit /2);
-    }
-    &--tiny {
-        gap: calc($inuit-global-spacing-unit / 4);
-    }
+  gap: $inuit-global-spacing-unit;
+  &--sm {
+      gap: calc($inuit-global-spacing-unit /2);
+  }
+  &--tiny {
+      gap: calc($inuit-global-spacing-unit / 4);
+  }
 }

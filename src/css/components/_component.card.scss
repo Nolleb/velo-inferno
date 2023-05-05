@@ -36,4 +36,11 @@
     letter-spacing: 1px;
     @include font-weight("bold");
   }
+
+  &__block-2 {
+    @include mq($from: tablet) {
+      padding-left: $global-spacer;
+    }
+  }
+
 }

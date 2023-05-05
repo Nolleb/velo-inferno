@@ -21,7 +21,8 @@ export class ActivityComponent implements OnInit {
 
   coordsLatLng: L.LatLngTuple[] = []
   coordsSegments:number[][] | undefined
-  elevation: [] = []
+  elevation: number[] = []
+  distanceLabels: string[] = []
 
 
   constructor(private stravaService: StravaService, public route: ActivatedRoute, private location: Location) {}
@@ -35,13 +36,19 @@ export class ActivityComponent implements OnInit {
         this.stravaService.getActivity(this.activityId).subscribe(response =>{
           this.isLoading = false
           this.activity = response.activity
-          //console.log("activity", response.coords)
+          console.log("activity", response.coords)
 
 
           this.coords = response.coords
-          this.elevation = response.elevation
-          console.log("elevation", this.elevation)
+          //this.elevation = this.elevation.push(response.elevation.elevationData)
+          //this.distanceLabels =
 
+          response.elevation.forEach((it: any) => {
+            this.distanceLabels.push(it.name)
+            this.elevation.push(it.elevationData)
+          })
+          //this.elevation.flat(1)
+          console.log("elevation", this.elevation)
           this.starredSegments = response.activeSegments
           response.activeSegments.forEach((segment: any) => {
             this.coordsSegment.push(segment.coords)
