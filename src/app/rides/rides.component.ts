@@ -17,7 +17,7 @@ export class RidesComponent implements OnInit {
   sortOrder = 1
   allRides: number | undefined = 0
   pagination: number = 1
-  limit: number = 20
+  limit: number = 15
   next: object | undefined
   prev: object | undefined
 
@@ -32,8 +32,6 @@ export class RidesComponent implements OnInit {
     this.isLoading = true
     this.stravaService.getPaginatedActivities(this.pagination, this.limit).subscribe((res: {activities: any}) => {
       this.isLoading = false
-
-      console.log("res", res.activities);
 
       this.next = res.activities?.next
       this.prev = res.activities?.previous

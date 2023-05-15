@@ -4,15 +4,16 @@
   padding: $global-spacer;
 
   &__summary {
-    border-top: 1px solid $grey-dark;
-    border-bottom: 1px solid $grey-dark;
+    background: var(--main-color);
     padding-top: calc($global-spacer /2);
     padding-bottom: calc($global-spacer /2);
     margin-bottom: calc($global-spacer);
+    border-radius: 4px;
+    padding: 10px;
   }
 
   &__label {
-    color: $label-color;
+    color: $white-color;
     font-size: 11px;
     @include font-weight("bold");
     letter-spacing: 1px;
@@ -31,7 +32,7 @@
   }
 
   &__subtitle {
-    color: $font-color;
+    color: $white-color;
     font-size: 16px;
     letter-spacing: 1px;
     @include font-weight("bold");

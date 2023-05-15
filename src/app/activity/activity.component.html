@@ -2,12 +2,11 @@
   <app-loader></app-loader>
 </ng-container>
 <ng-container *ngIf="activity && !isLoading">
-  <button (click)="goPreviousPage($event)" class="u-margin-bottom-small d-flex align-items-center gap-spacing--sm">
+  <button (click)="goPreviousPage($event)" class="u-margin-bottom d-flex align-items-center gap-spacing--sm">
     <span class="material-icons">
       keyboard_backspace
     </span>
     <span>
-
       Retour à la page précédente
     </span>
   </button>
@@ -103,13 +102,13 @@
       </div>
   </div>
   <div class="o-layout activity-page">
-    <div class="o-layout__item u-1/2@tablet u-2/5@desktop">
+    <div class="o-layout__item u-1/2@tablet">
       <div class="card mb-spacer">
         <app-map [coords]="coords" [coordsSegment]="coordsSegment" [indexSegment]="indexSegment" [isHovered]="isHovered"></app-map>
       </div>
     </div>
   <ng-container *ngIf="starredSegments.length > 0">
-    <div class="o-layout__item u-1/2@tablet u-3/5@desktop">
+    <div class="o-layout__item u-1/2@tablet">
       <div class="card mb-spacer">
         <h2 class="card__title d-flex align-items-center gap-spacing--sm">
           <div class="icon-title">
