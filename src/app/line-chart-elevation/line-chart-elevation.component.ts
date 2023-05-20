@@ -10,7 +10,7 @@ import { adjustColor } from '../utils/adjust-color';
 export class LineChartElevationComponent implements OnInit {
 
   @Input() label!: string
-  @Input() distanceLabels!: string[]
+  @Input() distanceLabels!: any[]
   @Input() color!: string
   @Input() data!: any
 
@@ -20,34 +20,32 @@ export class LineChartElevationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.labels = this.createEmptyArrayLabels(Math.round(this.data.length / 2))
     this.createChart()
   }
 
   createChart() {
 
     this.chart = new Chart("lineElevationID", {
-      type: 'line', //this denotes tha type of chart
+      type: 'bar', //this denotes tha type of chart
       data: {// values on X-Axis
         labels: this.distanceLabels,
 	       datasets: [
           {
             label: this.label,
             data: this.data,
-            backgroundColor: adjustColor(this.color, 20),
+            backgroundColor: adjustColor(this.color, 70),
             borderColor: this.color,
-            borderWidth: 2,
-            fill: true,
-
+            borderWidth: 4,
+            borderRadius:4,
+            barPercentage: 0.5,
+            barThickness: 20,
+            maxBarThickness: 25,
+            minBarLength: 2,
           }
         ]},
 
         options: {
-          elements: {
-            point:{
-                radius: 0
-            }
-          },
+          indexAxis: 'y',
           responsive: true, // not necessary, default is `true`,
           maintainAspectRatio: false, // default is `true`, default `aspectRatio` is 2
           scales: {
@@ -74,9 +72,6 @@ export class LineChartElevationComponent implements OnInit {
     });
   }
 
-  createEmptyArrayLabels (size: number) {
-      const arr = Array(size).fill("")
-      return arr
-  }
-
 }
+
+

@@ -86,27 +86,16 @@ router.get('/activity/:id', async function (req, res) {
   try {
     let activity = await fetch(activity_link + token.access_token);
     activity = await activity.json();
+    let activeSegments;
+    activeSegments = activity.segment_efforts.filter((it) => it.segment.starred === true);
 
-    let activeSegments = activity.segment_efforts.filter((it) => it.segment.starred === true);
-    let elevationSegments = activity.segment_efforts;
-
-    const elevationSegmentsinfos = [];
-    for(let x in elevationSegments) {
-      const newObj = {}
-      const elevationData = []
-
-      elevationData.push(Math.abs(elevationSegments[x]['segment']['elevation_low']));
-      elevationData.push(Math.abs(elevationSegments[x]['segment']['elevation_high']));
-      newObj['name'] = elevationSegments[x]['segment']['name'];
-      newObj['elevationData'] = elevationData;
-      elevationSegmentsinfos.push(newObj);
-    }
-
+    console.log("activeSegments", activeSegments)
 
     const activeSegmentsInfos = []
     for(let x in activeSegments) {
         const newObj = {}
 
+        newObj['elevationData'] = Math.round(activeSegments[x]['segment']['elevation_high'] - activeSegments[x]['segment']['elevation_low'])
         newObj['name'] = activeSegments[x]['name']
         newObj['id'] = activeSegments[x]['segment']['id']
         newObj['watts'] = activeSegments[x]['average_watts']
@@ -133,7 +122,6 @@ router.get('/activity/:id', async function (req, res) {
           }
           if (key === 'map') {
             let polyline = infosNext[key]['polyline'];
-            console.log("polyline ====> ", polyline);
             let finalCoords = polyUtil.decode(polyline);
             it['coords'] = finalCoords
           }
@@ -153,7 +141,6 @@ router.get('/activity/:id', async function (req, res) {
         activity: activity,
         coords: coords,
         activeSegments: asyncRes,
-        elevation: elevationSegmentsinfos
       }
     );
   }

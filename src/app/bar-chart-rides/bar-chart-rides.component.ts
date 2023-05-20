@@ -24,8 +24,6 @@ export class BarChartRidesComponent implements OnInit {
   }
 
   createChart() {
-    console.log("bon ", this.data);
-    //this.chart.defaults.color = "#1c0c4f"
 
     this.chart = new Chart("chartRidesID", {
       type: 'bar', //this denotes tha type of chart
@@ -35,7 +33,7 @@ export class BarChartRidesComponent implements OnInit {
           {
             label: this.label,
             data: this.data,
-            backgroundColor: adjustColor(this.color, 20),
+            backgroundColor: adjustColor(this.color, 50),
             borderColor: this.color,
             borderWidth: 2,
           }
